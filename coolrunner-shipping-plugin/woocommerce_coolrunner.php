@@ -76,11 +76,6 @@ if (!is_plugin_active('woocommerce/woocommerce.php')) {
         wp_enqueue_script('coolrunner', plugins_url('/assets/js/admin.js', __FILE__), array('jquery'), '1.0', true);
     });
 
-    add_action('wp_enqueue_scripts', function () {
-        //    wp_enqueue_style('fancybox-css', plugins_url('/fancybox/dist/jquery.fancybox.min.css', __FILE__));
-        //    wp_enqueue_script('fancybox-js', plugins_url('/fancybox/dist/jquery.fancybox.min.js', __FILE__), array('jquery'), '1.0', true);
-    });
-
 
     include(COOLRUNNER_PLUGIN_DIR . 'includes/curl.php');
     include(COOLRUNNER_PLUGIN_DIR . 'includes/class-coolrunner.php');
