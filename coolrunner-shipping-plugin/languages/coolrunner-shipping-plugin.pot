@@ -1,0 +1,281 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: CoolRunner for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-21 09:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: woocommerce_coolrunner.php:31
+msgid "CoolRunner for WooCommerce requires WooCommerce to work."
+msgstr ""
+
+#: woocommerce_coolrunner.php:32
+msgid "You can get WooCommerce here:"
+msgstr ""
+
+#: woocommerce_coolrunner.php:50
+msgid "Settings"
+msgstr ""
+
+#: woocommerce_coolrunner.php:51
+msgid "Read more about CoolRunner"
+msgstr ""
+
+#: woocommerce_coolrunner.php:67
+msgid "Searching for droppoints!"
+msgstr ""
+
+#: includes/functions.php:19
+msgid "CoolRunner could not retrieve information about your account."
+msgstr ""
+
+#: includes/functions.php:21
+msgid "Please check your username and/or token:"
+msgstr ""
+
+#: includes/functions.php:52
+msgid "Choose package shop"
+msgstr ""
+
+#: includes/functions.php:53
+msgid "Choose where you want your package to be dropped off"
+msgstr ""
+
+#: includes/functions.php:56
+msgid "Input Zip Code"
+msgstr ""
+
+#: includes/functions.php:64
+msgid "Search for package shop"
+msgstr ""
+
+#: includes/functions.php:135
+msgid "Distance"
+msgstr ""
+
+#: includes/functions.php:184
+msgid "Servicepoint"
+msgstr ""
+
+#: includes/functions.php:196
+msgid "Package Information"
+msgstr ""
+
+#: includes/functions.php:201
+msgid "Package Number"
+msgstr ""
+
+#: includes/functions.php:206
+msgid "PCN Pack ID"
+msgstr ""
+
+#: includes/functions.php:214 includes/admin/class-coolrunner-shipping.php:60
+msgid "Carrier"
+msgstr ""
+
+#: includes/functions.php:219
+msgid "Send to PCN"
+msgstr ""
+
+#: includes/functions.php:221
+msgid "Re-send tracking"
+msgstr ""
+
+#: includes/functions.php:436
+msgid "Phone"
+msgstr ""
+
+#: includes/functions.php:437
+msgid "The phone number for your business location."
+msgstr ""
+
+#: includes/functions.php:444
+msgid "Email"
+msgstr ""
+
+#: includes/functions.php:445
+msgid "The email address for your business location."
+msgstr ""
+
+#: includes/functions.php:596
+msgid "Shipping Status"
+msgstr ""
+
+#: includes/functions.php:609
+msgid "Sent to PCN"
+msgstr ""
+
+#: includes/functions.php:612
+msgid "Tracking sent"
+msgstr ""
+
+#: includes/functions.php:633
+msgid "Tracking History"
+msgstr ""
+
+#: includes/functions.php:665
+msgid "No tracking data available for order no."
+msgstr ""
+
+#: includes/functions.php:689
+msgid "Please select your package shop."
+msgstr ""
+
+#: includes/functions.php:750
+msgid "Unable to create or re-send email for order: "
+msgstr ""
+
+#. Author of the plugin
+#: includes/admin/class-coolrunner-settings.php:26
+msgid "CoolRunner"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:44
+msgid "General"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:63
+msgid "CoolRunner General"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:69
+msgid "CoolRunner Username"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:73
+msgid "Input your CoolRunner username"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:76
+msgid "CoolRunner Token"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:80
+msgid "Input your CoolRunner token"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:83
+msgid "Sender country"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:87
+msgid "Input your Sender country, remember to only use 2 characters!"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:90
+msgid "Number of droppoint"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:94
+msgid "Choose which number of droppoint to show at checkout"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:97
+msgid "5"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:98
+msgid "6"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:99
+msgid "7"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:100
+msgid "8"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:101
+msgid "9"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:102
+msgid "10"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:103
+msgid "11"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:104
+msgid "12"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:105
+msgid "13"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:106
+msgid "14"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:107
+msgid "15"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:108
+msgid "16"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:109
+msgid "17"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:110
+msgid "18"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:111
+msgid "19"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:112
+msgid "20"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:62
+msgid "This is the carrier used"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:64
+msgid "Select Carrier"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:68
+msgid "Product"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:70
+msgid "This is the product used"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:86
+#, php-format
+msgid "Set cost for %s | Set to -1 to disable this freight method"
+msgstr ""
+
+#. Name of the plugin
+msgid "CoolRunner for WooCommerce"
+msgstr ""
+
+#. Description of the plugin
+msgid "Shipping service of CoolRunner"
+msgstr ""
+
+#. URI of the plugin
+msgid "http://coolrunner.dk/customer/integrations"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://coolrunner.dk"
+msgstr ""
