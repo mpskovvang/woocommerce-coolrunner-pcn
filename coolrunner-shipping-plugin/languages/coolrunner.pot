@@ -1,0 +1,112 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: CoolRunner for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-21 07:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#. Author of the plugin
+msgid "CoolRunner"
+msgstr ""
+
+#. Name of the plugin
+msgid "CoolRunner for WooCommerce"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://coolrunner.dk/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Shipping service of CoolRunner"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Read more about CoolRunner"
+msgstr ""
+
+msgid "Searching for droppoints!"
+msgstr ""
+
+msgid "CoolRunner for WooCommerce requires WooCommerce to work."
+msgstr ""
+
+msgid "You can get WooCommerce here:"
+msgstr ""
+
+msgid "Choose package shop"
+msgstr ""
+
+msgid "Choose where you want your package to be dropped off"
+msgstr ""
+
+msgid "Input Zip Code"
+msgstr ""
+
+msgid "Search for package shop"
+msgstr ""
+
+msgid "Distance"
+msgstr ""
+
+msgid "Servicepoint"
+msgstr ""
+
+msgid "Package Information"
+msgstr ""
+
+msgid "PCN Pack ID"
+msgstr ""
+
+msgid "Send to PCN"
+msgstr ""
+
+msgid "Re-send tracking"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "The phone number for your business location."
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "The email address for your business location."
+msgstr ""
+
+msgid "Shipping Status"
+msgstr ""
+
+msgid "Sent to PCN"
+msgstr ""
+
+msgid "Tracking sent"
+msgstr ""
+
+msgid "Tracking History"
+msgstr ""
+
+msgid "No tracking data available for order no."
+msgstr ""
+
+msgid "Please select your package shop."
+msgstr ""
+
+msgid "Unable to create or re-send email for order:"
+msgstr ""
+
+msgid "New message"
+msgstr ""

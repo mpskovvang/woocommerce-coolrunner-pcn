@@ -1,0 +1,16 @@
+.column-order_pcn_sent p {
+    white-space : nowrap;
+}
+
+.column-order_pcn_sent p::before {
+    content : '✔ ';
+    color   : green;
+}
+
+[name*=woocommerce_coolrunner]:invalid {
+    border-color : darkred;
+}
+
+.cr-color-red {
+    color : darkred;
+}
