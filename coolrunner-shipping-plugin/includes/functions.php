@@ -108,7 +108,7 @@ function crship_coolrunner_droppoint_search() {
     $response = $curl->sendCurl($destination, get_option('coolrunner_settings_username'), get_option('coolrunner_settings_token'), $curldata, $header_enabled = false, $json = false);
     $response = json_decode(json_encode($response), true);
 
-    $radios = [];
+    $radios = array();
 
     if ($response['status'] == "ok" && !empty($response['result'])) {
         $list = $response['result'];
