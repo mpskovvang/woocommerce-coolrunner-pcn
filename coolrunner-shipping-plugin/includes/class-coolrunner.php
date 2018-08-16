@@ -45,6 +45,44 @@ class CoolRunner {
     public static function getVersion() {
         return get_plugin_data(__DIR__ . '/../woocommerce_coolrunner.php')['Version'];
     }
+
+    public static function showDebugNotice($contents) {
+        if (self::debugEnabled()) {
+            add_action('admin_notices', function () use ($contents) {
+                ?>
+                <div class="notice notice-warning">
+                    <h4 style="margin: .5em 0;">CoolRunner Debug Notice:</h4>
+                    <p>
+                        <?php echo $contents ?>
+                    </p>
+                    <p>
+                        Disable CoolRunner Debug Notices:
+                        <?php echo sprintf('<a href="%s/wp-admin/admin.php?page=wc-settings&tab=coolrunner">CoolRunner Settings</a>', get_site_url()) ?>
+                    </p>
+                </div>
+                <?php
+            });
+        }
+    }
+
+    public static function showNotice($contents, $type = 'error') {
+        add_action('admin_notices', function () use ($contents, $type) {
+            ?>
+            <div class="notice notice-<?php echo $type ?>">
+                <p>
+                    <?php echo $contents ?>
+                </p>
+                <p>
+                    <?php echo sprintf('<a href="%s/wp-admin/admin.php?page=wc-settings&tab=coolrunner">CoolRunner Settings</a>', get_site_url()) ?>
+                </p>
+            </div>
+            <?php
+        });
+    }
+
+    public static function debugEnabled() {
+        return get_option('coolrunner_settings_debug_mode') === 'yes';
+    }
 }
 
 class CoolRunner_Carrier {

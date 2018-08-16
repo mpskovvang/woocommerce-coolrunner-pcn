@@ -3,47 +3,55 @@
 define('COOLRUNNER_NAME', get_plugin_data(__DIR__ . '/../woocommerce_coolrunner.php')['Name']);
 define('COOLRUNNER_VERSION', get_plugin_data(__DIR__ . '/../woocommerce_coolrunner.php')['Version']);
 
-function crship_register_customer_shipping() {
+function crship_register_customer_shipping($force = false) {
 
-    $username = get_option('coolrunner_settings_username');
-    $token = get_option('coolrunner_settings_token');
-    $destination = "v2/freight_rates/" . get_option('woocommerce_default_country');
-    $curldata = "";
+    $last_run = get_option('coolrunner_last_sync', 0);
 
-    $curl = new CR_Curl();
-    $response = $curl->sendCurl($destination, $username, $token, $curldata, $header_enabled = false, $json = true);
-    if ((int)!$response) {
-        add_action('admin_notices', function () {
-            ?>
-            <div class="notice notice-error">
-                <p><?php _e('CoolRunner could not retrieve information about your account.', 'coolrunner-shipping-plugin'); ?></p>
-                <p>
-                    <?php _e('Please check your username and/or token:', 'coolrunner-shipping-plugin'); ?>
-                    <?php echo sprintf('<a href="%s/wp-admin/admin.php?page=wc-settings&tab=coolrunner">CoolRunner Settings</a>', get_site_url()) ?>
-                </p>
-            </div>
-            <?php
-        });
+    // Piggy back on any request once per hour to update product lists
+    if ($last_run < time() - 3600 || $force) {
+        update_option('coolrunner_last_sync', time());
+        $username = get_option('coolrunner_settings_username');
+        $token = get_option('coolrunner_settings_token');
+        $destination = "v2/freight_rates/" . get_option('woocommerce_default_country');
+        $curldata = "";
+
+        $curl = new CR_Curl();
+        $response = $curl->sendCurl($destination, $username, $token, $curldata, $header_enabled = false, $json = true);
+        if ((int)!$response) {
+            add_action('admin_notices', function () {
+                ?>
+                <div class="notice notice-error">
+                    <p><?php _e('CoolRunner could not retrieve information about your account.', 'coolrunner-shipping-plugin'); ?></p>
+                    <p>
+                        <?php _e('Please check your username and/or token:', 'coolrunner-shipping-plugin'); ?>
+                        <?php echo sprintf('<a href="%s/wp-admin/admin.php?page=wc-settings&tab=coolrunner">CoolRunner Settings</a>', get_site_url()) ?>
+                    </p>
+                </div>
+                <?php
+            });
+            return false;
+        }
+
+        if ($response->status == "ok") {
+            $data = json_decode(json_encode($response->result), true);
+        }
+
+        CoolRunner::showDebugNotice('Fetching CoolRunner product information: <pre>' . print_r($data, true) . '</pre>');
+
+        if ($data) {
+            update_option('coolrunner_wc_curl_data', $data);
+        }
+
+        if (!empty($data)) {
+            return $data;
+        }
         return false;
     }
 
-    if ($response->status == "ok") {
-        $data = json_decode(json_encode($response->result), true);
-    }
-
-    if ($data) {
-        update_option('coolrunner_wc_curl_data', $data);
-    }
-
-    if (!empty($data)) {
-        return $data;
-    }
-    return false;
+    return get_option('coolrunner_wc_curl_data');
 }
 
-if (!get_option('coolrunner_wc_curl_data', false)) {
-    crship_register_customer_shipping();
-}
+crship_register_customer_shipping();
 
 
 function crship_add_coolrunner_pickup_to_checkout() {

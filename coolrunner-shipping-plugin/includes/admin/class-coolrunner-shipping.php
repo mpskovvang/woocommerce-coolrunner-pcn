@@ -69,13 +69,13 @@ add_action('woocommerce_shipping_init', function () {
                     'type'              => 'select',
                     'description'       => __('This is the product used', 'coolrunner-shipping-plugin'),
                     'default'           => '',
-                    'options'           => $this->_getCarrierProducts(true),
+                    'options'           => array_merge(array('' => __('Select Product', 'coolrunner-shipping-plugin')), $this->_getCarrierProducts(true)),
                     'custom_attributes' => array('required' => true)
                 )
             );
 
             foreach ($this->_getCarrierProducts() as $key => $product) {
-                if (isset($product['title'])) {
+                if (isset($product['title']) && $product['title']) {
                     $countries = array();
                     foreach ($product['zone'] as $cc) {
                         $countries[] = WC()->countries->get_countries()[$cc];

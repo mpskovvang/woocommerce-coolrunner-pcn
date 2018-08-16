@@ -112,6 +112,13 @@ if (!class_exists('WC_Settings_CoolRunner')) :
                             '20' => __('20', 'coolrunner-shipping-plugin'),
                         ),
                     ),
+                    array(
+                        'name' => 'Debug Mode',
+                        'type' => 'checkbox',
+                        'id' => 'coolrunner_settings_debug_mode',
+                        'desc_tip' => true,
+                        'desc' => 'Enable debug mode - This is meant for debugging purposes only and may cause issues on your site\'s frontend so use with care<br>'
+                    )
                 );
                 $menu[] = array(
                     'type' => 'secionend',
@@ -128,7 +135,7 @@ if (!class_exists('WC_Settings_CoolRunner')) :
              * @since 1.0
              */
             public function save() {
-                crship_register_customer_shipping();
+                crship_register_customer_shipping(true);
                 parent::save();
             }
         }

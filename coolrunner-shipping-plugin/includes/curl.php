@@ -51,7 +51,6 @@ class CR_Curl {
             } else {
                 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
             }
-
         }
 
         // Kør curl
