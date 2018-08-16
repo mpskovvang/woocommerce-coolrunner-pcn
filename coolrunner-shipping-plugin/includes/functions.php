@@ -18,6 +18,7 @@ function crship_register_customer_shipping($force = false) {
         $curl = new CR_Curl();
         $response = $curl->sendCurl($destination, $username, $token, $curldata, $header_enabled = false, $json = true);
         if ((int)!$response) {
+            update_option('coolrunner_last_sync', time() - 10000);
             add_action('admin_notices', function () {
                 ?>
                 <div class="notice notice-error">
