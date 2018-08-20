@@ -15,6 +15,46 @@ if (!class_exists('WC_Settings_CoolRunner')) :
         class WC_Settings_CoolRunner
             extends WC_Settings_Page {
 
+            public function default_email() {
+                ob_start(); ?>
+                <table style='width:100%;height: 100vh'>
+                    <tr>
+                        <td align='center' style='background-color:#f7f7f7'>
+                            <table style='width:600px'>
+                                <tr>
+                                    <td style='background-color:#2B97D6;padding: 15px'>
+                                        <h1 style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;font-size:30px;font-weight:300;line-height:150%;margin:0;text-align:left">CoolRunner</h1>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color:#ffffff;padding: 15px'>
+                                        Hej {first_name}
+                                        <hr>
+                                        Vedrørende din ordre med nr. #{order_no} fra CoolRunner, så kan du følge den via dette link <a href="https://coolrunner.dk/">https://coolrunner.dk/</a><br>
+                                        Klik på fanen spor en pakke og indsæt dette
+                                        track and trace nummer:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="background-color:#ffffff;padding: 15px;border-top: 2px solid #2B97D6;border-bottom: 2px solid #2B97D6">
+                                        <h3>{package_number}</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="background-color: #ffffff">
+                                        <small>
+                                            OBS! Denne e-mail kan ikke besvares!
+                                        </small>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <?php
+                return ob_get_clean();
+            }
+
             /**
              * Setup settings class
              *
@@ -113,17 +153,52 @@ if (!class_exists('WC_Settings_CoolRunner')) :
                         ),
                     ),
                     array(
-                        'name' => 'Debug Mode',
-                        'type' => 'checkbox',
-                        'id' => 'coolrunner_settings_debug_mode',
+                        'name'     => __('Send To PCN Automatically', 'coolrunner-shipping-plugin'),
+                        'type'     => 'checkbox',
+                        'id'       => 'coolrunner_settings_auto_send_to_pcn',
                         'desc_tip' => true,
-                        'desc' => 'Enable debug mode - This is meant for debugging purposes only and may cause issues on your site\'s frontend so use with care<br>'
-                    )
+                        'desc'     => __('Send the order to PCN automatically', 'coolrunner-shipping-plugin')
+                    ),
+                    'pcn-when' => array(
+                        'name'     => __('Send To PCN when', 'coolrunner-shipping-plugin'),
+                        'type'     => 'select',
+                        'id'       => 'coolrunner_settings_auto_send_to_pcn_when',
+                        'desc_tip' => true,
+                        'desc'     => __('Send the order to PCN automatically when order status changes to', 'coolrunner-shipping-plugin'),
+                        'default'  => 'woocommerce_order_status_completed',
+                        'options'  => array(),
+                    ),
+                    array(
+                        'name'     => __('Enable Automatic Tracking Email', 'coolrunner-shipping-plugin'),
+                        'type'     => 'checkbox',
+                        'id'       => 'coolrunner_settings_send_email',
+                        'desc_tip' => true,
+                        'desc'     => __('Enable automatic tracking email for the customer - This e-mail is sent at the time of the order going through and NOT when it is actually shipped', 'coolrunner-shipping-plugin')
+                    ),
+                    array(
+                        'name'     => __('Tracking Email', 'coolrunner-shipping-plugin'),
+                        'type'     => 'textarea',
+                        'default'  => $this->default_email(),
+                        'desc_tip' => false,
+                        'desc'     => 'Placeholders: {first_name}, {last_name}, {email}, {order_no}, {package_number}',
+                        'id'       => 'coolrunner_settings_tracking_email',
+                    ),
+                    array(
+                        'name'     => 'Debug Mode',
+                        'type'     => 'checkbox',
+                        'id'       => 'coolrunner_settings_debug_mode',
+                        'desc_tip' => true,
+                        'desc'     => 'Enable debug mode - This is meant for debugging purposes only and may cause issues on your site\'s frontend so use with care<br>'
+                    ),
+                    array(
+                        'type' => 'secionend',
+                        'id'   => 'coolrunner_settings'
+                    ),
                 );
-                $menu[] = array(
-                    'type' => 'secionend',
-                    'id'   => 'coolrunner_settings'
-                );
+
+                foreach (wc_get_order_statuses() as $key => $value) {
+                    $menu['pcn-when']['options']['woocommerce_order_status_' . str_replace('wc-', '', $key)] = implode(' ', array(__('Order', 'woocommerce'), $value));
+                }
 
                 $settings = apply_filters('coolrunner_settings', $menu);
                 return apply_filters('woocommerce_get_settings_' . $this->id, $settings, $current_section);

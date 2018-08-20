@@ -69,6 +69,10 @@ jQuery(function ($) {
         if ($('body').is('.woocommerce-checkout')) {
             var val = $('[name="shipping_method[0]"]:checked').val();
 
+            if(val === undefined) {
+                val = $('[name="shipping_method[0]"]').val()
+            }
+
             var parts = val.replace('coolrunner_', '').split('_', 3),
                 carrier = parts[0],
                 product = parts[1],

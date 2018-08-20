@@ -183,7 +183,9 @@ add_action('woocommerce_shipping_init', function () {
                         'label'     => $this->title,
                         'cost'      => $chosen_service,
                         'meta_data' => array(
-                            'carrier' => explode('_', $product)[0]
+                            'carrier' => explode('_', $product)[0],
+                            'product' => explode('_', $product)[1],
+                            'service' => explode('_', $product)[2]
                         )
                     )
                 );

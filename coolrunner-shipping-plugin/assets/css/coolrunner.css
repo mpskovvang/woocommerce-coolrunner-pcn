@@ -3,6 +3,7 @@
     display       : inline-block;
     margin-top    : 25px;
     margin-bottom : 25px;
+    width : 100%;
 }
 
 .coolrunner_select_shop .zip-row::after, .coolrunner_select_shop .zip-row::before {

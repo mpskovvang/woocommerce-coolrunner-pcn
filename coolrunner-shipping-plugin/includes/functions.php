@@ -100,7 +100,7 @@ function crship_coolrunner_droppoint_search() {
         "zipcode"              => $_POST['zip_code'],
         "city"                 => isset($_POST['city']) ? $_POST['city'] : null,
         "street"               => isset($_POST['street']) ? $_POST['street'] : null,
-        "number_of_droppoints" => getopt('coolrunner_settings_number_droppoint')
+        "number_of_droppoints" => get_option('coolrunner_settings_number_droppoint')
     );
 
     $destination = "v2/droppoints/";
@@ -112,6 +112,7 @@ function crship_coolrunner_droppoint_search() {
 
     if ($response['status'] == "ok" && !empty($response['result'])) {
         $list = $response['result'];
+        $list = array_splice($list, 0, get_option('coolrunner_settings_number_droppoint'));
 
         foreach ($list as $entry) {
             ob_start();
@@ -144,20 +145,20 @@ function crship_coolrunner_droppoint_search() {
                                     <?php echo __('Distance', 'coolrunner-shipping-plugin') ?>: <?php echo number_format(intval($entry['distance']) / 1000, 2) ?>km
                                 </div>
                             <?php endif; ?>
-                            <!--<div class="cr-open-hours">
-                                <table cellspacing="0" cellpadding="5">
-                                    <colgroup>
-                                        <col width="1">
-                                        <col>
-                                    </colgroup>
-                                    <?php foreach ($entry['opening_hours'] as $data) : ?>
-                                        <tr>
-                                            <td><?php echo $data['weekday'] ?></td>
-                                            <td><?php echo $data['from'] ?> - <?php echo $data['to'] ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </table>
-                            </div>-->
+                            <!--                            <div class="cr-open-hours">-->
+                            <!--                                <table cellspacing="0" cellpadding="5">-->
+                            <!--                                    <colgroup>-->
+                            <!--                                        <col width="1">-->
+                            <!--                                        <col>-->
+                            <!--                                    </colgroup>-->
+                            <!--                                    --><?php //foreach ($entry['opening_hours'] as $data) : ?>
+                            <!--                                        <tr>-->
+                            <!--                                            <td>--><?php //echo $data['weekday'] ?><!--</td>-->
+                            <!--                                            <td>--><?php //echo $data['from'] ?><!-- - --><?php //echo $data['to'] ?><!--</td>-->
+                            <!--                                        </tr>-->
+                            <!--                                    --><?php //endforeach; ?>
+                            <!--                                </table>-->
+                            <!--                            </div>-->
                         </td>
                     </tr>
                 </table>
@@ -168,6 +169,7 @@ function crship_coolrunner_droppoint_search() {
 
         echo implode($radios);
     } else {
+        echo print_r($response, true);
         echo "No Droppoints were found";
     }
     exit();
@@ -332,7 +334,9 @@ function coolrunner_resend_label_notification($post_id = null) {
         //	$response = $curl->sendCurl($destination, $username, $token, $curldata, $header_enabled = false, $json = true);
         //	print_r($curldata);
         $success = 0;
+        CoolRunner::showDebugNotice("Sending Order {$order->get_id()} to PCN");
         if (isset($response) || get_post_meta($order->get_id(), '_coolrunner_pcn_pack_id', true)) {
+            CoolRunner::showDebugNotice("Order {$order->get_id()} has been sent to PCN");
             $success = 1;
         }
         //update pdf link
@@ -341,12 +345,28 @@ function coolrunner_resend_label_notification($post_id = null) {
         $get_email = get_post_meta($order_id, '_coolrunner_printed', true);
 
         $sent = false;
-        if (get_option('coolrunner_settings_send_email') == 'yes' || true) {
+        if (get_option('coolrunner_settings_send_email') == 'yes') {
+            CoolRunner::showDebugNotice("Sending Order {$order->get_id()} tracking email");
             //	$tracking_array = coolrunner_get_tracking_data($post_id);
             //	$package_no = $tracking_array->package_number;
             $package_no = get_post_meta($order_id, '_coolrunner_package_number', true);
 
             $customer = new WC_Customer($order->get_customer_id());
+
+            $placeholders = array(
+                '{first_name}'     => $customer->get_first_name(),
+                '{last_name}'      => $customer->get_last_name(),
+                '{email}'          => $customer->get_email(),
+                '{order_no}'       => $order->get_id(),
+                '{package_number}' => $package_no
+            );
+
+            $text = get_option('coolrunner_settings_tracking_email');
+
+            foreach ($placeholders as $placeholder => $value) {
+                $text = str_replace($placeholder, $value, $text);
+            }
+
             ob_start();
             ?>
             <!DOCTYPE html>
@@ -355,39 +375,7 @@ function coolrunner_resend_label_notification($post_id = null) {
                 <title>CoolRunner Tracking</title>
             </head>
             <body style="margin: 0; padding: 0;">
-            <table style='width:100%; height: 100vh;'>
-                <tr>
-                    <td align='center' style='background-color:#f7f7f7'>
-                        <table style='width:600px; box-shadow: 2px 2px 5px darkgray'>
-                            <tr>
-                                <td style='background-color:#2B97D6; padding: 15px;'>
-                                    <h1 style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;font-size:30px;font-weight:300;line-height:150%;margin:0;text-align:left">CoolRunner Tracking</h1>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style='background-color:#ffffff; padding: 15px;'>
-                                    Hej <?php echo $customer->get_first_name() ?>
-                                    <hr>
-                                    Vedrørende din ordre med nr #<?php echo $order->get_id(); ?> fra <?php echo get_site_url(); ?>, så kan du finde den via dette link https://coolrunner.dk/ Klik på fanen spor en pakke og indsæt dette
-                                    track and trace nummer:
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="background-color:#ffffff;padding: 15px; border-top: 2px solid #2B97D6; border-bottom: 2px solid #2B97D6">
-                                    <h3><?php echo $package_no ?></h3>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="background-color: #ffffff">
-                                    <small>
-                                        OBS! Denne e-mail kan ikke besvares!
-                                    </small>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+            <?php echo $text ?>
             </body>
             </html>
             <?php
@@ -401,7 +389,6 @@ function coolrunner_resend_label_notification($post_id = null) {
             );
 
             $sent = wp_mail($to, $subject, $message, $headers, $attachments = "");
-
             update_post_meta($order_id, '_coolrunner_email_sent', (int)$sent);
         }
 
@@ -872,4 +859,12 @@ function crship_custom_js_admin_footer() {
     </script>
     <?php
 }
+
+if (get_option('coolrunner_settings_auto_send_to_pcn') === 'yes') {
+    add_action(get_option('coolrunner_settings_auto_send_to_pcn_when'), function ($order_id) {
+        coolrunner_resend_label_notification($order_id);
+    });
+}
+
+
 
