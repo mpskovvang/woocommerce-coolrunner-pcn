@@ -591,28 +591,6 @@ function coolrunner_override_default_address_fields($address_fields) {
     return $address_fields;
 }
 
-add_filter('woocommerce_package_rates', 'crship_hide_shipping_rate_if_exceeding', 10, 2);
-function crship_hide_shipping_rate_if_exceeding($rates, $package) {
-
-    global $woocommerce;
-
-    $weight = $woocommerce->cart->cart_contents_weight;
-    $weight = $weight * 1000;
-
-    foreach ($rates as $id => $shipping_object) {
-        if (strpos($shipping_object->id, 'coolrunner_') == 'coolrunner_') {
-
-            $max_weight = get_option($shipping_object->id . '_max_weight');
-
-            if ($weight >= $max_weight) {
-                unset($rates[$shipping_object->id]);
-            }
-        }
-    }
-
-    return $rates;
-}
-
 // Add order new column in administration
 add_filter('manage_edit-shop_order_columns', 'woo_order_weight_column', 20);
 function woo_order_weight_column($columns) {

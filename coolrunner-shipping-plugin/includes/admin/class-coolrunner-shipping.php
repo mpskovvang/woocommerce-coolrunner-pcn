@@ -148,6 +148,7 @@ add_action('woocommerce_shipping_init', function () {
 
         public function calculate_shipping($package = array()) {
             $weight = 0;
+
             foreach ($package['contents'] as $product) {
                 /** @var WC_Product $prod_data */
                 $prod_data = $product['data'];
