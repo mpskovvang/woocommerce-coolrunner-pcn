@@ -282,7 +282,10 @@ function coolrunner_ajax_resend_pdf_script() {
                     }
                 })
                     .done(function (data) {
-                        if (data.sent && data.created) {
+                        if (data.errors.length !== 0) {
+                            alert(data.errors.join(' | '));
+                            return;
+                        } else if (data.sent && data.created) {
                             alert('Shipment sent to PCN and notification sent');
                         } else if (data.sent) {
                             alert('Notification sent');
@@ -317,10 +320,12 @@ function coolrunner_resend_label_notification($post_id = null) {
 
         $destination = "pcn/order/create";
 
+        $errors = [];
+
         if (!get_post_meta($order->get_id(), '_coolrunner_pcn_pack_id', true)) {
             $curldata = create_shipment_array($order);
 
-            if(!$curldata) {
+            if (!$curldata) {
                 return;
             }
 
@@ -332,6 +337,8 @@ function coolrunner_resend_label_notification($post_id = null) {
 //                update_post_meta($order_id, '_coolrunner_auto_status', get_option('coolrunner_settings_auto_status'));
                 update_post_meta($order_id, '_coolrunner_package_number', $response->package_number);
                 update_post_meta($order_id, '_coolrunner_pcn_pack_id', $response->pcn_pack_id);
+            } else {
+                $errors = $response->errors;
             }
         }
 
@@ -349,7 +356,7 @@ function coolrunner_resend_label_notification($post_id = null) {
         $get_email = get_post_meta($order_id, '_coolrunner_printed', true);
 
         $sent = false;
-        if (get_option('coolrunner_settings_send_email') == 'yes') {
+        if (get_option('coolrunner_settings_send_email') == 'yes' && count($errors) === 0) {
             CoolRunner::showDebugNotice("Sending Order {$order->get_id()} tracking email");
             //	$tracking_array = coolrunner_get_tracking_data($post_id);
             //	$package_no = $tracking_array->package_number;
@@ -404,8 +411,9 @@ function coolrunner_resend_label_notification($post_id = null) {
 
         $return = array(
             'sent'        => $sent,
-            'created'     => isset($response),
-            'new_content' => $content
+            'created'     => isset($response) && $response->status === 'ok',
+            'new_content' => $content,
+            'errors'       => $errors
         );
         //	$data = $tracking_array;
         //	echo $data->package_number;
@@ -542,15 +550,15 @@ function create_shipment_array($order) {
             "receiver_notify"       => true,
             "receiver_notify_sms"   => $order->get_billing_phone(),
             "receiver_notify_email" => $order->get_billing_email(),
-//            "sender_name"           => $user_info->first_name . " " . $user_info->last_name,
-//            'sender_attention'      => "",
-//            "sender_street1"        => WC()->countries->get_base_address(),
-//            'sender_street2'        => WC()->countries->get_base_address_2(),
-//            "sender_zipcode"        => WC()->countries->get_base_postcode(),
-//            "sender_city"           => WC()->countries->get_base_city(),
-//            "sender_country"        => "DK",
-//            "sender_phone"          => get_option('woocommerce_store_phone'),
-//            "sender_email"          => get_option('woocommerce_store_email'),
+            //            "sender_name"           => $user_info->first_name . " " . $user_info->last_name,
+            //            'sender_attention'      => "",
+            //            "sender_street1"        => WC()->countries->get_base_address(),
+            //            'sender_street2'        => WC()->countries->get_base_address_2(),
+            //            "sender_zipcode"        => WC()->countries->get_base_postcode(),
+            //            "sender_city"           => WC()->countries->get_base_city(),
+            //            "sender_country"        => "DK",
+            //            "sender_phone"          => get_option('woocommerce_store_phone'),
+            //            "sender_email"          => get_option('woocommerce_store_email'),
             "carrier"               => $shipping_method->getCarrier(),
             "carrier_product"       => $shipping_method->getProduct(),
             "carrier_service"       => $shipping_method->getService(),
@@ -706,7 +714,7 @@ if (!function_exists('crship_is_droppoint')) {
 add_action('admin_footer-edit.php', 'crship_custom_bulk_admin_footer');
 
 function crship_custom_bulk_admin_footer() {
-
+    return;
     global $post_type;
 
     if ($post_type == 'shop_order') {
@@ -723,7 +731,7 @@ function crship_custom_bulk_admin_footer() {
 
 add_action('load-edit.php', 'crship_custom_bulk_action');
 function crship_custom_bulk_action() {
-
+    return;
     // Make sure that we on "Woocomerce orders list" page
     if (!isset($_GET['post_type']) || $_GET['post_type'] != 'shop_order') {
         return;
@@ -776,10 +784,9 @@ function coolrunner_resend_label_bulk_action($post_id) {
         $destination = "pcn/order/create";
         $curldata = create_shipment_array($order);
 
-        if($curldata) {
+        if ($curldata) {
             $curl = new CR_Curl();
             $response = $curl->sendCurl($destination, get_option('coolrunner_settings_username'), get_option('coolrunner_settings_token'), $curldata, $recieve_responsecode = false, $json = true);
-
             //	$response = $curl->sendCurl($destination, $username, $token, $curldata, $header_enabled = false, $json = true);
             //	print_r($curldata);
 

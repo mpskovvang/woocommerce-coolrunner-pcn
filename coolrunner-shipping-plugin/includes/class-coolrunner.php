@@ -97,7 +97,7 @@ class CoolRunner_Carrier {
 
         $this->_carrier = $product[0];
         $this->_product = $product[1];
-        $this->_service = $product[2];
+        $this->_service = isset($product[2]) ? $product[2] : '';
         $this->_title = $arr['title'];
     }
 
