@@ -75,42 +75,44 @@ jQuery(function ($) {
                     val = $('[name="shipping_method[0]"]').val()
                 }
 
-                if (val.indexOf('coolrunner_') === -1 || val.indexOf('droppoint') === -1) {
-                    droppoint_container.hide();
-                } else {
-                    droppoint_container.show();
-                }
+                if(val !== undefined) {
+                    if (val.indexOf('coolrunner_') === -1 || val.indexOf('droppoint') === -1) {
+                        droppoint_container.hide();
+                    } else {
+                        droppoint_container.show();
+                    }
 
-                var parts = val.replace('coolrunner_', '').split('_', 3),
-                    carrier = parts[0],
-                    product = parts[1],
-                    service = parts.hasOwnProperty(2) ? parts[2] : null;
+                    var parts = val.replace('coolrunner_', '').split('_', 3),
+                        carrier = parts[0],
+                        product = parts[1],
+                        service = parts.hasOwnProperty(2) ? parts[2] : null;
 
-                if (droppoint_container.attr('data-carrier') !== carrier) {
-                    droppoint_container.attr('data-carrier', carrier);
-                    droppoint_container.find('.coolrunner-droppoints').slideUp(250, function () {
-                        $(this).html('');
-                    }).slideDown(250);
-                }
+                    if (droppoint_container.attr('data-carrier') !== carrier) {
+                        droppoint_container.attr('data-carrier', carrier);
+                        droppoint_container.find('.coolrunner-droppoints').slideUp(250, function () {
+                            $(this).html('');
+                        }).slideDown(250);
+                    }
 
-                if (val !== undefined && val.indexOf('coolrunner') === 0) {
+                    if (val !== undefined && val.indexOf('coolrunner') === 0) {
 
-                    if (service !== null && service.indexOf('droppoint') === 0) {
-                        droppoint_container.filter('.hidden').slideDown(250, function () {
-                            $(this).removeClass('hidden');
-                        });
-                        $('[name="coolrunner_carrier"]').val(carrier);
+                        if (service !== null && service.indexOf('droppoint') === 0) {
+                            droppoint_container.filter('.hidden').slideDown(250, function () {
+                                $(this).removeClass('hidden');
+                            });
+                            $('[name="coolrunner_carrier"]').val(carrier);
+                        } else {
+                            droppoint_container.filter(':not(.hidden)').addClass('hidden').stop().slideUp(250, function () {
+                                droppoint_container.find('.coolrunner-droppoints').html('');
+                                droppoint_container.find('.coolrunner-droppoints').find('input').remove();
+                            });
+                        }
                     } else {
                         droppoint_container.filter(':not(.hidden)').addClass('hidden').stop().slideUp(250, function () {
                             droppoint_container.find('.coolrunner-droppoints').html('');
                             droppoint_container.find('.coolrunner-droppoints').find('input').remove();
                         });
                     }
-                } else {
-                    droppoint_container.filter(':not(.hidden)').addClass('hidden').stop().slideUp(250, function () {
-                        droppoint_container.find('.coolrunner-droppoints').html('');
-                        droppoint_container.find('.coolrunner-droppoints').find('input').remove();
-                    });
                 }
 
             } else {
