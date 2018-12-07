@@ -177,7 +177,7 @@ add_action('woocommerce_shipping_init', function () {
                     }
                 }
             }
-            if ($chosen_service != -1) {
+            if ($chosen_service != -1 && $chosen_service != null) {
                 $this->add_rate(
                     array(
                         'id'        => "coolrunner_$product",
