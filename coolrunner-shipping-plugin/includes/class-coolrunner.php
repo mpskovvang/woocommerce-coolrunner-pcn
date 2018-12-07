@@ -17,10 +17,11 @@ class CoolRunner {
                     $shipping_method->get_instance_id(),
                     'settings'
                 ));
+                break;
             }
         }
 
-        return $config_name ? new CoolRunner_Carrier(get_option($config_name)) : false;
+        return $config_name ? new CoolRunner_Carrier(get_option($config_name), $shipping_method) : false;
     }
 
     /**
@@ -91,13 +92,19 @@ class CoolRunner_Carrier {
         $_service,
         $_title;
 
-    public function __construct($arr) {
+    /**
+     * CoolRunner_Carrier constructor.
+     *
+     * @param $arr
+     * @param $order_item WC_Order_Item_Shipping
+     */
+    public function __construct($arr, $order_item) {
 
         $product = explode('_', $arr['product'], 3);
 
-        $this->_carrier = $product[0];
-        $this->_product = $product[1];
-        $this->_service = isset($product[2]) ? $product[2] : '';
+        $this->_carrier = $order_item->get_meta('carrier');
+        $this->_product = $order_item->get_meta('product');
+        $this->_service = $order_item->get_meta('service');
         $this->_title = $arr['title'];
     }
 
