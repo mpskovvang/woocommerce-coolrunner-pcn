@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CoolRunner for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-21 09:16+0000\n"
+"POT-Creation-Date: 2019-01-25 11:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,233 +14,263 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: woocommerce_coolrunner.php:31
+#: woocommerce_coolrunner.php:33
 msgid "CoolRunner for WooCommerce requires WooCommerce to work."
 msgstr ""
 
-#: woocommerce_coolrunner.php:32
+#: woocommerce_coolrunner.php:34
 msgid "You can get WooCommerce here:"
 msgstr ""
 
-#: woocommerce_coolrunner.php:50
+#: woocommerce_coolrunner.php:52
 msgid "Settings"
 msgstr ""
 
-#: woocommerce_coolrunner.php:51
+#: woocommerce_coolrunner.php:53
 msgid "Read more about CoolRunner"
 msgstr ""
 
-#: woocommerce_coolrunner.php:67
+#: woocommerce_coolrunner.php:69
 msgid "Searching for droppoints!"
 msgstr ""
 
-#: includes/functions.php:19
+#: includes/functions.php:25
 msgid "CoolRunner could not retrieve information about your account."
 msgstr ""
 
-#: includes/functions.php:21
+#: includes/functions.php:27
 msgid "Please check your username and/or token:"
 msgstr ""
 
-#: includes/functions.php:52
+#: includes/functions.php:61
 msgid "Choose package shop"
 msgstr ""
 
-#: includes/functions.php:53
+#: includes/functions.php:62
 msgid "Choose where you want your package to be dropped off"
 msgstr ""
 
-#: includes/functions.php:56
+#: includes/functions.php:65
 msgid "Input Zip Code"
 msgstr ""
 
-#: includes/functions.php:64
+#: includes/functions.php:73
 msgid "Search for package shop"
 msgstr ""
 
-#: includes/functions.php:135
+#: includes/functions.php:145
 msgid "Distance"
 msgstr ""
 
-#: includes/functions.php:184
+#: includes/functions.php:195
 msgid "Servicepoint"
 msgstr ""
 
-#: includes/functions.php:196
+#: includes/functions.php:207
 msgid "Package Information"
 msgstr ""
 
-#: includes/functions.php:201
+#: includes/functions.php:212
 msgid "Package Number"
 msgstr ""
 
-#: includes/functions.php:206
+#: includes/functions.php:217
 msgid "PCN Pack ID"
 msgstr ""
 
-#: includes/functions.php:214 includes/admin/class-coolrunner-shipping.php:60
+#: includes/functions.php:225 includes/admin/class-coolrunner-shipping.php:60
 msgid "Carrier"
 msgstr ""
 
-#: includes/functions.php:219
+#: includes/functions.php:230
 msgid "Send to PCN"
 msgstr ""
 
-#: includes/functions.php:221
+#: includes/functions.php:232
 msgid "Re-send tracking"
 msgstr ""
 
-#: includes/functions.php:436
+#: includes/functions.php:474
 msgid "Phone"
 msgstr ""
 
-#: includes/functions.php:437
+#: includes/functions.php:475
 msgid "The phone number for your business location."
 msgstr ""
 
-#: includes/functions.php:444
+#: includes/functions.php:482
 msgid "Email"
 msgstr ""
 
-#: includes/functions.php:445
+#: includes/functions.php:483
 msgid "The email address for your business location."
 msgstr ""
 
-#: includes/functions.php:596
+#: includes/functions.php:614
 msgid "Shipping Status"
 msgstr ""
 
-#: includes/functions.php:609
+#: includes/functions.php:627
 msgid "Sent to PCN"
 msgstr ""
 
-#: includes/functions.php:612
+#: includes/functions.php:630
 msgid "Tracking sent"
 msgstr ""
 
-#: includes/functions.php:633
+#: includes/functions.php:651
 msgid "Tracking History"
 msgstr ""
 
-#: includes/functions.php:665
+#: includes/functions.php:683
 msgid "No tracking data available for order no."
 msgstr ""
 
-#: includes/functions.php:689
+#: includes/functions.php:707
 msgid "Please select your package shop."
 msgstr ""
 
-#: includes/functions.php:750
+#: includes/functions.php:768
 msgid "Unable to create or re-send email for order: "
 msgstr ""
 
 #. Author of the plugin
-#: includes/admin/class-coolrunner-settings.php:26
+#: includes/admin/class-coolrunner-settings.php:66
 msgid "CoolRunner"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:44
+#: includes/admin/class-coolrunner-settings.php:84
 msgid "General"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:63
+#: includes/admin/class-coolrunner-settings.php:103
 msgid "CoolRunner General"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:69
+#: includes/admin/class-coolrunner-settings.php:109
 msgid "CoolRunner Username"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:73
+#: includes/admin/class-coolrunner-settings.php:113
 msgid "Input your CoolRunner username"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:76
+#: includes/admin/class-coolrunner-settings.php:116
 msgid "CoolRunner Token"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:80
+#: includes/admin/class-coolrunner-settings.php:120
 msgid "Input your CoolRunner token"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:83
+#: includes/admin/class-coolrunner-settings.php:123
 msgid "Sender country"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:87
+#: includes/admin/class-coolrunner-settings.php:127
 msgid "Input your Sender country, remember to only use 2 characters!"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:90
+#: includes/admin/class-coolrunner-settings.php:130
 msgid "Number of droppoint"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:94
+#: includes/admin/class-coolrunner-settings.php:134
 msgid "Choose which number of droppoint to show at checkout"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:97
+#: includes/admin/class-coolrunner-settings.php:137
 msgid "5"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:98
+#: includes/admin/class-coolrunner-settings.php:138
 msgid "6"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:99
+#: includes/admin/class-coolrunner-settings.php:139
 msgid "7"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:100
+#: includes/admin/class-coolrunner-settings.php:140
 msgid "8"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:101
+#: includes/admin/class-coolrunner-settings.php:141
 msgid "9"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:102
+#: includes/admin/class-coolrunner-settings.php:142
 msgid "10"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:103
+#: includes/admin/class-coolrunner-settings.php:143
 msgid "11"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:104
+#: includes/admin/class-coolrunner-settings.php:144
 msgid "12"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:105
+#: includes/admin/class-coolrunner-settings.php:145
 msgid "13"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:106
+#: includes/admin/class-coolrunner-settings.php:146
 msgid "14"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:107
+#: includes/admin/class-coolrunner-settings.php:147
 msgid "15"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:108
+#: includes/admin/class-coolrunner-settings.php:148
 msgid "16"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:109
+#: includes/admin/class-coolrunner-settings.php:149
 msgid "17"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:110
+#: includes/admin/class-coolrunner-settings.php:150
 msgid "18"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:111
+#: includes/admin/class-coolrunner-settings.php:151
 msgid "19"
 msgstr ""
 
-#: includes/admin/class-coolrunner-settings.php:112
+#: includes/admin/class-coolrunner-settings.php:152
 msgid "20"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:156
+msgid "Send To PCN Automatically"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:160
+msgid "Send the order to PCN automatically"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:163
+msgid "Send To PCN when"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:167
+msgid "Send the order to PCN automatically when order status changes to"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:172
+msgid "Enable Automatic Tracking Email"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:176
+msgid ""
+"Enable automatic tracking email for the customer - This e-mail is sent at "
+"the time of the order going through and NOT when it is actually shipped"
+msgstr ""
+
+#: includes/admin/class-coolrunner-settings.php:179
+msgid "Tracking Email"
 msgstr ""
 
 #: includes/admin/class-coolrunner-shipping.php:62
@@ -259,7 +289,47 @@ msgstr ""
 msgid "This is the product used"
 msgstr ""
 
-#: includes/admin/class-coolrunner-shipping.php:86
+#: includes/admin/class-coolrunner-shipping.php:72
+msgid "Select Product"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:78
+msgid "Enable Free Shipping"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:82
+msgid "Free Shipping Clause"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:84
+msgid "Free Shipping On"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:87
+msgid "Select Clause"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:88
+msgid "Weight Above"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:89
+msgid "Weight Below"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:90
+msgid "Price Above"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:91
+msgid "Price Below"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:96
+msgid "Free Shipping Value"
+msgstr ""
+
+#: includes/admin/class-coolrunner-shipping.php:113
 #, php-format
 msgid "Set cost for %s | Set to -1 to disable this freight method"
 msgstr ""
@@ -278,4 +348,7 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "http://coolrunner.dk"
+msgstr ""
+
+msgid "This controls when at the above clause free shipping is used."
 msgstr ""

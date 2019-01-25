@@ -7,6 +7,8 @@ jQuery(function ($) {
         (function digest() {
             var carrierSelect = $('#woocommerce_coolrunner_carrier'),
                 productSelect = $('#woocommerce_coolrunner_product'),
+                freeShipping = $('#woocommerce_coolrunner_free_shipping'),
+                freeShippingClause = $('#woocommerce_coolrunner_free_shipping_clause, #woocommerce_coolrunner_free_shipping_input'),
                 carrierOptions = carrierSelect.find('option:not(:first-child)'),
                 productOptions = productSelect.find('option:not(:first-child)'),
                 serviceOptions = $('[name*=coolrunner_service_]');
@@ -50,6 +52,16 @@ jQuery(function ($) {
                         });
                     }).trigger('change');
 
+                    freeShipping.on('change input click', function () {
+                        if (!$(this).is(':checked')) {
+                            freeShippingClause.attr('required', false);
+                            freeShippingClause.parents('tr').css('display', 'none');
+                        } else {
+                            freeShippingClause.attr('required', true);
+                            freeShippingClause.parents('tr').css('display', '');
+                        }
+                    }).trigger('change');
+
                     $('#btn-ok').on('click', function (e) {
                         var invalids = $('[name*=woocommerce_coolrunner]:invalid');
                         if (invalids.length !== 0) {
@@ -79,7 +91,7 @@ jQuery(function ($) {
         })()
     }
 
-    if($('body').hasClass('woocommerce_page_wc-settings')) {
+    if ($('body').hasClass('woocommerce_page_wc-settings')) {
         var email_preview = $('<iframe id="coolrunner-email-preview" style="width: 100%; background: white;"><html style="background: white;"><head></head><body style="padding: 0; margin: 0;"></body></html></iframe>');
 
         email_preview.insertAfter('#coolrunner_settings_tracking_email');

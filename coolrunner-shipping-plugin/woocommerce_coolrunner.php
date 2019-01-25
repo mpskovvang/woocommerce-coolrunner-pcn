@@ -3,7 +3,7 @@
  * Plugin Name: CoolRunner for WooCommerce
  * Plugin URI: http://coolrunner.dk/customer/integrations
  * Description: Shipping service of CoolRunner
- * Version: 0.1
+ * Version: 1.0
  * Author: CoolRunner
  * Author URI: http://coolrunner.dk
  * Developer: Morten Harders / CoolRunner
@@ -21,6 +21,8 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+
+define('COOLRUNNER_WOOCOMMERCE_VERSION', '1.1');
 
 //Check if woocommerce is active so it doesn't crash
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
@@ -56,8 +58,8 @@ if (!is_plugin_active('woocommerce/woocommerce.php')) {
         if (is_checkout()) {
 
 
-            wp_enqueue_style('coolrunner', plugins_url('/assets/css/coolrunner.css', __FILE__));
-            wp_enqueue_script('coolrunner', plugins_url('/assets/js/coolrunner.js', __FILE__), array('jquery'), '1.0', true);
+            wp_enqueue_style('coolrunner', plugins_url('/assets/css/coolrunner.css', __FILE__), array(), COOLRUNNER_WOOCOMMERCE_VERSION);
+            wp_enqueue_script('coolrunner', plugins_url('/assets/js/coolrunner.js', __FILE__), array('jquery'), COOLRUNNER_WOOCOMMERCE_VERSION, true);
 
 
             wp_localize_script('coolrunner', 'coolrunner', array(
@@ -72,8 +74,8 @@ if (!is_plugin_active('woocommerce/woocommerce.php')) {
 
 
     add_action('admin_enqueue_scripts', function () {
-        wp_enqueue_style('coolrunner', plugins_url('/assets/css/admin-coolrunner.css', __FILE__));
-        wp_enqueue_script('coolrunner', plugins_url('/assets/js/admin.js', __FILE__), array('jquery'), '1.0', true);
+        wp_enqueue_style('coolrunner', plugins_url('/assets/css/admin-coolrunner.css', __FILE__), array(), COOLRUNNER_WOOCOMMERCE_VERSION);
+        wp_enqueue_script('coolrunner', plugins_url('/assets/js/admin.js', __FILE__), array('jquery'), COOLRUNNER_WOOCOMMERCE_VERSION, true);
     });
 
 
