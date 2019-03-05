@@ -536,9 +536,11 @@ function create_shipment_array($order) {
             $drop_country = '';
         }
 
+        $name = $order->get_shipping_company() ?: ($order->get_shipping_first_name() . ' ' . $order->get_shipping_last_name());
+
         $array = array(
             'order_number'          => $order->get_order_number(),
-            'receiver_name'         => $order->get_shipping_first_name() . ' ' . $order->get_shipping_last_name(),
+            'receiver_name'         => $name,
             "receiver_attention"    => $order->get_shipping_first_name() . ' ' . $order->get_shipping_last_name(),
             'receiver_street1'      => $order->get_shipping_address_1(),
             'receiver_street2'      => $order->get_shipping_address_2(),
