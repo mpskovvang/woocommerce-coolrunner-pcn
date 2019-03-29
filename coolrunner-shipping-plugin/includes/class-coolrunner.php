@@ -37,7 +37,8 @@ class CoolRunner {
             'coolrunner' => 'CoolRunner',
             'posti'      => 'Posti',
             'dhl'        => 'DHL',
-            'helthjem'   => 'Helt Hjem'
+            'helthjem'   => 'Helt Hjem',
+            'bring'      => 'Bring'
         );
 
         return !is_null($key) ? (isset($carriers[$key]) ? $carriers[$key] : null) : $carriers;
