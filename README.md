@@ -16,7 +16,7 @@ Package the plugin with the woocommerce_coolrunner.php file in the root of the z
 
 #### or
 
-Use the pre-packaged version: [woocommerce_coolrunner.zip](woocommerce_coolrunner.zip)
+Use the pre-packaged version: [woocommerce_coolrunner.zip](https://github.com/CoolRunner-dk/woocommerce-coolrunner-pcn/raw/master/woocommerce_coolrunner.zip)
 
 ## Installing into Wordpress
 
