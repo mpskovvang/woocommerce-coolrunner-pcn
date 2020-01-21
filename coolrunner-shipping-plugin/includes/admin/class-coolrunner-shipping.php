@@ -223,6 +223,15 @@ add_action('woocommerce_shipping_init', function () {
                 }
             }
 
+            if (isset($package['applied_coupons'])) {
+                foreach ($package['applied_coupons'] as $code) {
+                    if ((new WC_Coupon($code))->get_free_shipping()) {
+                        $free_shipping = true;
+                        $chosen_service = 0;
+                    }
+                }
+            }
+
             if (($chosen_service != -1 && $chosen_service != null) || $free_shipping) {
                 $this->add_rate(
                     array(
