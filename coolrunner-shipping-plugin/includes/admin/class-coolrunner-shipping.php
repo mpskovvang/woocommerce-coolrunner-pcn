@@ -195,6 +195,7 @@ add_action('woocommerce_shipping_init', function () {
             }
 
             $chosen_service = null;
+            $hideShipment = true;
             foreach ($services as $size => $service) {
                 if (floor(floatval($service)) !== -1) {
                     $size = array_map('intval', explode('_', $size, 2));
@@ -202,6 +203,8 @@ add_action('woocommerce_shipping_init', function () {
 
                     if ($size[0] <= $weight && $size[1] >= $weight) {
                         $chosen_service = floatval($service);
+                        $hideShipment = false;
+
                         break;
                     }
                 }
@@ -233,18 +236,20 @@ add_action('woocommerce_shipping_init', function () {
             }
 
             if (($chosen_service != -1 && $chosen_service != null) || $free_shipping) {
-                $this->add_rate(
-                    array(
-                        'id'        => "coolrunner_$product",
-                        'label'     => $this->title,
-                        'cost'      => $chosen_service,
-                        'meta_data' => array(
-                            'carrier' => explode('_', $product)[0],
-                            'product' => explode('_', $product)[1],
-                            'service' => explode('_', $product)[2]
+                if(!$hideShipment) {
+                    $this->add_rate(
+                        array(
+                            'id'        => "coolrunner_$product",
+                            'label'     => $this->title,
+                            'cost'      => $chosen_service,
+                            'meta_data' => array(
+                                'carrier' => explode('_', $product)[0],
+                                'product' => explode('_', $product)[1],
+                                'service' => explode('_', $product)[2]
+                            )
                         )
-                    )
-                );
+                    );
+                }
             }
         }
     }
