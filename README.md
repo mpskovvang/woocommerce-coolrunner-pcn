@@ -1,4 +1,4 @@
-CoolRunner for WooCommerce (PakkecenterNord / PCN)
+CoolRunner for Wordpress WooCommerce (PakkecenterNord / PCN)
 ==========================
 
 License: MIT
