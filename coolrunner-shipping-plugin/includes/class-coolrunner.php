@@ -32,14 +32,18 @@ class CoolRunner {
     public static function getCarriers($key = null) {
         $carriers = array(
             'dao'        => 'DAO',
-            'bring'      => 'Bring',
-            'coolrunner' => 'CoolRunner',
-            'dhl'        => 'DHL',
-            'gls'        => 'GLS',
             'pdk'        => 'Postnord',
+            'gls'        => 'GLS',
+            'coolrunner' => 'CoolRunner',
             'posti'      => 'Posti',
+            'dhl'        => 'DHL',
             'helthjem'   => 'Helt Hjem',
-            'dfm'        => 'Danske Fragtmænd'
+            'bring'      => 'Bring',
+            'dfm'        => 'Danske Fragtmænd',
+            'royalmail'  => 'Royal Mail',
+            'postnl'     => 'PostNL',
+            'mondialrelay' => 'Mondial Relay',
+            'colisprive' => 'Colis Privé'
         );
 
         return !is_null($key) ? (isset($carriers[$key]) ? $carriers[$key] : null) : $carriers;
