@@ -12,7 +12,7 @@ function crship_register_customer_shipping($force = false) {
         update_option('coolrunner_last_sync', time());
         $username = get_option('coolrunner_settings_username');
         $token = get_option('coolrunner_settings_token');
-        $destination = "v2/freight_rates/" . substr(get_option('woocommerce_default_country'), 0, 2);
+        $destination = "v2/freight_rates/" . substr(get_option('coolrunner_settings_sender_country'), 0, 2);
         $curldata = "";
 
         $curl = new CR_Curl();
