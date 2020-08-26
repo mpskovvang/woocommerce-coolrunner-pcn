@@ -410,10 +410,12 @@ function coolrunner_resend_label_notification($post_id = null) {
         $content = ob_get_clean();
 
         $return = array(
-            'sent'        => $sent,
-            'created'     => isset($response) && $response->status === 'ok',
+            'sent' => $sent,
+            'created' => isset($response) && $response->status === 'ok',
             'new_content' => $content,
-            'errors'       => $errors
+            'errors' => $errors,
+            'curldata' => $curldata,
+            'response' => $response
         );
         //	$data = $tracking_array;
         //	echo $data->package_number;
