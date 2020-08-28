@@ -593,7 +593,7 @@ function create_shipment_array($order)
             $prod = new WC_Order_Item_Product($item->get_id());
             if (!$prod->get_product()->is_virtual()) {
                 // Skip bundles, so these isnt sent to PCN
-                if (strpos($prod->get_product()->get_sku(), 'bundle') !== false) {
+                if ($prod->get_type() == 'bundle') {
                     continue;
                 }
 
