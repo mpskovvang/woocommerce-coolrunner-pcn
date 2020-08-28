@@ -39,6 +39,7 @@ class CoolRunner {
             'dhl'        => 'DHL',
             'helthjem'   => 'Helt Hjem',
             'bring'      => 'Bring',
+            'bringse'    => 'Bring Sverige',
             'dfm'        => 'Danske Fragtmænd',
             'royalmail'  => 'Royal Mail',
             'postnl'     => 'PostNL',
