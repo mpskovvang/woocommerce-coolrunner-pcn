@@ -592,15 +592,24 @@ function create_shipment_array($order)
         foreach ($order->get_items() as $item) {
             $prod = new WC_Order_Item_Product($item->get_id());
             if (!$prod->get_product()->is_virtual()) {
-                // Skip bundles, so these isnt sent to PCN
-                if ($prod->get_type() == 'bundle') {
-                    continue;
+                $productArray = array(
+                    'item_number' => $prod->get_product()->get_sku(),
+                    'qty'         => $item->get_quantity()
+                );
+
+                if($order->get_shipping_country() == 'NO') {
+                    $productArray['customs'] = array(
+                        "description" => $prod->get_product()->get_name(),
+                        "total_price" => $prod->get_subtotal(),
+                        "currency_code" => "NOK",
+                        "sender_tariff" => $prod->get_product()->get_attribute('hs-tariff'),
+                        "receiver_tariff" => $prod->get_product()->get_attribute('hs-tariff'),
+                        "weight" => $prod->get_product()->get_weight(),
+                        "origin_country" => "DK"
+                    );
                 }
 
-                $array['order_lines'][] = array(
-                    'item_number' => $prod->get_product()->get_sku(),
-                    'qty' => $item->get_quantity()
-                );
+                $array['order_lines'][] = $productArray;
             }
         }
 
