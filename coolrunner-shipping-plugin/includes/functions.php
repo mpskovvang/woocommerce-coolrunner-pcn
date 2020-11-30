@@ -299,7 +299,12 @@ function coolrunner_ajax_resend_pdf_script()
                 })
                     .done(function (data) {
                         if (data.errors.length !== 0) {
-                            alert(data.errors.join(' | '));
+                            let errors = "";
+			    $.each(data.errors, function(i, item) {
+				errors += item + ', ';
+			    });
+
+                            alert(errors);
                             return;
                         } else if (data.sent && data.created) {
                             alert('Shipment sent to PCN and notification sent');
