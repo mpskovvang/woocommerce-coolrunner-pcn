@@ -114,7 +114,11 @@ function crship_coolrunner_droppoint_search()
 
     $radios = array();
 
-    if ($response['status'] == "ok" && !empty($response['result'])) {
+    if ($response['status'] !== 'ok') {
+        wp_send_json($response, 400);
+    }
+
+    if (!empty($response['result'])) {
         $list = $response['result'];
         $list = array_splice($list, 0, get_option('coolrunner_settings_number_droppoint'));
 
@@ -177,8 +181,7 @@ function crship_coolrunner_droppoint_search()
 
         echo implode($radios);
     } else {
-        echo print_r($response, true);
-        echo "No Droppoints were found";
+        echo __('No droppoints found.', 'coolrunner-shipping-plugin');
     }
     exit();
 }
