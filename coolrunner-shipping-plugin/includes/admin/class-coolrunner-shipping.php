@@ -237,15 +237,17 @@ add_action('woocommerce_shipping_init', function () {
 
             if (($chosen_service != -1 && $chosen_service != null) || $free_shipping) {
                 if(!$hideShipment) {
+                    $parts = explode('_', $product);
+                    
                     $this->add_rate(
                         array(
                             'id'        => "coolrunner_$product",
                             'label'     => $this->title,
                             'cost'      => $chosen_service,
                             'meta_data' => array(
-                                'carrier' => explode('_', $product)[0],
-                                'product' => explode('_', $product)[1],
-                                'service' => explode('_', $product)[2]
+                                'carrier' => $parts[0],
+                                'product' => $parts[1],
+                                'service' => $parts[2] ?? null,
                             )
                         )
                     );
