@@ -597,7 +597,7 @@ function create_shipment_array($order)
             'order_lines' => array()
         );
 
-        foreach ($order->get_items() as $item) {
+        foreach (apply_filters('coolrunner_shipment_order_items', $order->get_items()) as $item) {
             $prod = new WC_Order_Item_Product($item->get_id());
             if (!$prod->get_product()->is_virtual()) {
                 $productArray = array(
