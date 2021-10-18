@@ -13,7 +13,6 @@ jobs:
       
       - uses: actions/upload-artifact@v2
         with:
-        name: woocommerce_coolrunner
-        path: coolrunner-shipping-plugin
-
-      
+          name: woocommerce_coolrunner
+          path: |
+            coolrunner-shipping-plugin
