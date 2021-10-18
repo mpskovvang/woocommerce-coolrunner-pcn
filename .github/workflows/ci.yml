@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/upload-artifact@v2
+        with:
+        name: woocommerce_coolrunner
+        path: coolrunner-shipping-plugin
+
+      
