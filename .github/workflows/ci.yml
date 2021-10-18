@@ -15,4 +15,4 @@ jobs:
         with:
           name: woocommerce_coolrunner
           path: |
-            coolrunner-shipping-plugin
+            ./coolrunner-shipping-plugin
