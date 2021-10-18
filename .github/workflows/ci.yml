@@ -14,4 +14,10 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: woocommerce_coolrunner
-          path: .
+          path: |
+            .
+            !.git
+            !.github
+            !.gitignore
+            !LICENSE
+            !README.md
