@@ -16,7 +16,7 @@ class CR_Curl {
         $json = false;
     }
 
-    public function sendCurl($destination, $username, $token, $data = array(), $recieve_header = false, $json) {
+    public function sendCurl($destination, $username, $token, $data = array(), $recieve_header = false, $json = false) {
 
         //Linket til funktionen den skal ramme
         $url = 'https://api.coolrunner.dk/' . $destination;
