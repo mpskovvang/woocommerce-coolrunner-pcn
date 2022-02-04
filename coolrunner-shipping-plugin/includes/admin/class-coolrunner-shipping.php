@@ -185,7 +185,7 @@ add_action('woocommerce_shipping_init', function () {
                 $price += floatval($product['line_total']);
             }
 
-            $weight *= 1000;
+            $weight = intval(round($weight * 1000));
             $product = $this->get_option('product', false);
             $services = array();
             foreach ($this->instance_settings as $key => $setting) {
